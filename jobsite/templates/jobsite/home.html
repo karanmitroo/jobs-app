@@ -10,6 +10,20 @@
     <h4> The First Page </h4>
     <h5> The First Page </h5>
     <h6> The First Page </h6>
+
+    <ol>
+      {% for job in jobs %}
+      <li>
+        {{ job.title }}
+        {{ job.url }}
+      </li>
+      {% endfor %}
+    </ol>
+
+    <form method="POST" action=""> {% csrf_token %}
+    {{form}}
+    <input class="btn btn-primary pull-center" value="Submit" type= "submit" />
+  </form>
   </body>
 
 </html>
