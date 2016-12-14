@@ -1,13 +1,96 @@
 <html>
   <head>
     <title>JOBLIST</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   </head>
 
-
   <body>
-    This is the joblist page.
-    {{data_dice}}
+    <div class="row">
+
+      <div class="col-md-12">
+        <h1> INDEED RESULTS </h1>
+      </div>
+    </div>
+    <hr />
+
+    <ol>
+
+   {% for job in data_indeed %}
+      <div class="row">
+        <div class="col-md-8">
+          <h3> <li> {{job.jobtitle}} - {{job.company}} </h3>
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4> <strong>Location</strong> : {{job.city}}</h4>
+              </div>
+
+              <div class="col-md-6">
+                <h4> <strong>Date</strong> : {{job.date}}</h4>
+              </div>
+            </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h5><a href= {{job.url}}>Link to {{job.jobtitle}} </a></h5>
+                </div>
+              </div>
+
+      </li>
+      </div>
+    </div>
+
+  {% endfor %}
+    </ol>
+
+
+    <div class="row">
+
+      <div class="col-md-12">
+        <h1> Dice RESULTS </h1>
+      </div>
+    </div>
+
+    <hr />
+
+    <ol>
+  {% for job in data_dice %}
+      <div class="row">
+        <div class="col-md-8">
+            <h3> <li>{{job.jobTitle}} - {{job.company}} </h3>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <h4> <strong>Location</strong> : {{job.location}} </h4>
+                </div>
+
+
+                <div class="col-md-6">
+                  <h4><strong>Date</strong> : {{job.date}} </h4>
+                </div>
+              </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                  <h5><a href= {{job.detailUrl}}>Link to {{job.jobTitle}}</a></h5>
+                  </div>
+                </div>
+
+      </li>
+        </div>
+      </div>
+
+  {% endfor %}
+    </ol>
   </body>
 
 </html>
