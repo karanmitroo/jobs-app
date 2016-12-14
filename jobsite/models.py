@@ -20,3 +20,10 @@ class Job(models.Model):
 
     def __unicode__(self):
         return self.url
+
+class Country(models.Model):
+    country = models.CharField(max_length = 30)
+    code = models.CharField(max_length=5)
+
+    def __unicode__(self):
+        return self.country

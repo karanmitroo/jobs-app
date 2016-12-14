@@ -8,4 +8,11 @@ class JobAdmin(admin.ModelAdmin):
     class Meta:
         model = Job
 
+
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ['country', 'code']
+    class Meta:
+        model = Country
+
 admin.site.register(Job, JobAdmin)
+admin.site.register(Country, CountryAdmin)
