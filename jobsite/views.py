@@ -1046,7 +1046,7 @@ def results(request, search, location, country, page):
 
     start = 25 * (int(page) - 1)
 
-    link_indeed = "http://api.indeed.com/ads/apisearch?publisher=7730342108690608" + "&q="+search + "&l="+location + "&sort=&radius=40&st=&jt=" + "&start="+str(start+1) + "&end="+str(start+25) + "&limit=100&format=json&fromage=&filter=&latlong=1" + "&co="+country + "&chnl=&userip=122.162.34.161&useragent=Mozilla/%2F4.0%28Firefox%29&v=2"
+    link_indeed = "http://api.indeed.com/ads/apisearch?publisher=7730342108690608" + "&q="+search + "&l="+location + "&sort=date&radius=40&st=&jt=" + "&start="+str(start+1) + "&end="+str(start+25) + "&limit=100&format=json&fromage=&filter=&latlong=1" + "&co="+country + "&chnl=&userip=122.162.34.161&useragent=Mozilla/%2F4.0%28Firefox%29&v=2"
     response_indeed = requests.get(link_indeed)
     data_indeed = json.loads(response_indeed.text)["results"]
 
@@ -1067,8 +1067,25 @@ def results(request, search, location, country, page):
     response_dice = requests.get(link_dice)
     data_dice = json.loads(response_dice.text)["resultItemList"]
 
+
+    form = QueryForm(request.POST or None)
+
+    if form.is_valid():
+        search = form.cleaned_data.get('search')
+        location = form.cleaned_data.get('location')
+        country = str(form.cleaned_data.get('country'))
+
+        return redirect("/search/" + search + "/" + location + "/" + country + "/" "page0")
+
     data = {
     'data_indeed' : data_indeed,
-    'data_dice' : data_dice
+    'data_dice' : data_dice,
+    'form' : form
     }
     return render(request, 'jobsite/joblist.html', data)
+
+
+def about(request):
+    data = {'about_us' : "This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page."}
+
+    return render(request, 'about.html', data)

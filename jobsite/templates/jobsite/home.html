@@ -1,31 +1,11 @@
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-<html>
-  <head>
-    <title>Home Page</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  </head>
-
-  <body>
-    <h1> The First Page </h1>
-    <h2> The First Page </h2>
-    <h3> The First Page </h3>
-    <h4> The First Page </h4>
-    <h5> The First Page </h5>
-    <h6> The First Page </h6>
-
-
+  {% block home %}
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-6 col-sm-offset-3">
+
+        <h2>A single place to search for your favorite jobs</h2>
 
         <form method="POST" action=""> {% csrf_token %}
         {{ form|crispy }}
@@ -33,6 +13,4 @@
         </form>
       <div>
     </div>
-  </body>
-
-</html>
+  {% endblock %}

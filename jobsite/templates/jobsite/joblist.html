@@ -1,31 +1,23 @@
-<html>
-  <head>
-    <title>JOBLIST</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  </head>
-
-  <body>
+  {% block home %}
     <div class="row">
 
-      <div class="col-md-12">
-        <h1> INDEED RESULTS </h1>
+      <div class="col-md-8">
+          <h1> INDEED RESULTS </h1>
+          <hr />
       </div>
+
     </div>
-    <hr />
 
-    <ol>
 
+    <div class="row">
+      <div class="col-md-8">
+        <ol>
    {% for job in data_indeed %}
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <h3> <li> {{job.jobtitle}} - {{job.company}} </h3>
 
             <div class="row">
@@ -46,25 +38,41 @@
 
       </li>
       </div>
+
+
     </div>
 
   {% endfor %}
     </ol>
+    </div>
+  </div>
+
+
+  <div class="col-md-4 form">
+      <form method="POST" action=""> {% csrf_token %}
+      {{ form|crispy }}
+      <input class="btn btn-primary pull-center" value="Submit" type= "submit" />
+      </form>
+  </div>
+
+
 
 
     <div class="row">
 
-      <div class="col-md-12">
-        <h1> Dice RESULTS </h1>
+      <div class="col-md-8">
+        <h1> DICE RESULTS </h1>
+        <hr />
       </div>
     </div>
 
-    <hr />
 
-    <ol>
+    <div class="row">
+      <div class="col-md-8">
+        <ol>
   {% for job in data_dice %}
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3> <li>{{job.jobTitle}} - {{job.company}} </h3>
 
 
@@ -91,6 +99,7 @@
 
   {% endfor %}
     </ol>
-  </body>
+      </div>
+    </div>
 
-</html>
+  {% endblock %}
