@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Job
-from .forms import QueryForm
+from .forms import QueryForm, ContactForm
 import requests, json
-import os
+# import os
 # Create your views here.
 
 def home(request):
@@ -71,3 +71,11 @@ def about(request):
     data = {'about_us' : "This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page. This is the about us page."}
 
     return render(request, 'about.html', data)
+
+def contact(request):
+	form = ContactForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		return render(request, 'home.html')
+
+	return render(request, 'contact.html', {'form': form})

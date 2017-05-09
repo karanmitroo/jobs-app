@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+	{% block active_contact %}active{% endblock %}
+
+	{% block home %}
+	<div class="row">
+		<div class="col-md-6 col-sm-offset-3">
+
+		    <h2>Please contact us by filling out the form below.</h2>
+			<h5>PS: Items marked with '*' are mandatory.</h5>
+
+		    <form method="POST" action=""> {% csrf_token %}
+		    {{ form|crispy }}
+		    <input class="btn btn-primary pull-center" value="Submit" type= "submit" />
+		    </form>
+	 	<div>
+	</div>
+	{% endblock %}
